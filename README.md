@@ -15,10 +15,9 @@ This guide will walk you through the usage of the `vision.py` script, which inte
      ```
 
 2. **Interact with Floating Buttons**:
-   - You'll see two floating buttons at the bottom of the camera feed:
+   - You'll see a floating button at the bottom of the camera feed:
      - **Find**: Click on this button to extract text from the image, send it to the AI for analysis, and hear the AI's response.
-     - **Image-Quiz**: Click on this button to take a screenshot and send it to the AI for image-based analysis.
-   
+
 3. **Text Extraction**:
    - When you click the **Find** button, the script takes a screenshot of the current frame.
    - The OCR function extracts any text from the screenshot and sends it to the AI for analysis.
@@ -48,8 +47,7 @@ This guide will walk you through the usage of the `vision.py` script, which inte
 ## Additional Notes
 
 - **Preprocessing**: The script preprocesses the captured image to make the text more readable before running OCR.
-- **Masking**: The buttons are masked out during OCR to prevent the script from reading them as text.
-- **Image-Quiz Functionality**: The "Image-Quiz" button is a placeholder in the current version. You can integrate an actual image-based API in this function for future enhancement.
+- **Masking**: The button is masked out during OCR to prevent the script from reading it as text.
 
 ---
 
