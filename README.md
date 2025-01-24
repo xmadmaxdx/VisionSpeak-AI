@@ -33,6 +33,24 @@ This guide will walk you through the usage of the `vision.py` script, which inte
 1. **Camera Issues**:
    - If the camera feed doesn't open, ensure you have the right camera connected and accessible.
    - On Windows, the script uses `cv2.VideoCapture(1, cv2.CAP_DSHOW)`. If you're on Linux, you might need to use `cv2.VideoCapture(1, cv2.CAP_V4L2)`.
+   - The number `1` in `cv2.VideoCapture(1, cv2.CAP_DSHOW)` is changeable. You can test which camera is available by checking indices from `0` to `4`. Here's the code to check available camera indices:
+
+     ```python
+     import cv2
+
+     def check_available_cameras():
+         for i in range(5):  # Checking for cameras 0 to 4
+             cap = cv2.VideoCapture(i)
+             if cap.isOpened():
+                 print(f"Camera {i} is available.")
+             else:
+                 print(f"Camera {i} is not available.")
+             cap.release()
+
+     check_available_cameras()
+     ```
+
+     - If you find that no camera works, ensure that your webcam drivers are up to date and properly installed.
 
 2. **OCR Not Working**:
    - If **EasyOCR** fails to initialize, make sure the library is installed correctly.
