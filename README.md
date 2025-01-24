@@ -9,7 +9,7 @@ This guide will walk you through the usage of the `vision.py` script, which inte
 1. **Start the Camera Feed**:
    - The script uses OpenCV to capture video from your webcam.
    - To start the script, simply run the Python file in your terminal:
-   - 
+     
      ```bash
      python vision.py
      ```
