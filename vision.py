@@ -34,11 +34,6 @@ def send_to_api(text):
     except Exception as e:
         return f"API request failed: {e}"
 
-def send_image_to_api(image_path):
-    """Send an image to the AI API and get the response."""
-    # Replace with an API that supports image input if available
-    return "This functionality is currently a placeholder."
-
 def text_to_speech(response_text):
     """Convert AI response to speech and play it automatically."""
     try:
@@ -67,17 +62,11 @@ def draw_buttons(frame):
     # Button 1: "Find"
     cv2.rectangle(frame, (20, height - 100), (180, height - 50), (0, 255, 0), -1)
     cv2.putText(frame, "Find", (40, height - 65), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
-    
-    # Button 2: "Its A Image-Quiz"
-    cv2.rectangle(frame, (200, height - 100), (440, height - 50), (255, 0, 0), -1)
-    cv2.putText(frame, "Image-Quiz", (220, height - 65), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
 
 def check_button_click(x, y, frame_height):
-    """Check if a button was clicked."""
+    """Check if the "Find" button was clicked."""
     if 20 <= x <= 180 and frame_height - 100 <= y <= frame_height - 50:
         return "Find"
-    elif 200 <= x <= 440 and frame_height - 100 <= y <= frame_height - 50:
-        return "Image-Quiz"
     return None
 
 def mask_buttons(frame):
@@ -85,8 +74,6 @@ def mask_buttons(frame):
     height, width, _ = frame.shape
     # Mask the "Find" button
     cv2.rectangle(frame, (20, height - 100), (180, height - 50), (0, 0, 0), -1)
-    # Mask the "Image-Quiz" button
-    cv2.rectangle(frame, (200, height - 100), (440, height - 50), (0, 0, 0), -1)
 
 def preprocess_image(image):
     """Preprocess the image to make the background black and text white for better readability."""
@@ -146,7 +133,7 @@ def main():
                         extracted_text = " ".join([detection[1] for detection in result])
 
                         # Clean or validate the extracted text
-                        extracted_text = extracted_text.replace("Find", "").replace("Image-Quiz", "").strip()
+                        extracted_text = extracted_text.replace("Find", "").strip()
                         print("Extracted Text:", extracted_text)
 
                         if extracted_text:
@@ -160,18 +147,6 @@ def main():
                             print("No meaningful text detected.")
                     else:
                         print("EasyOCR is not available.")
-
-                elif button == "Image-Quiz":
-                    # Take a screenshot
-                    screenshot = frame.copy()
-                    cv2.imwrite("screenshot.jpg", screenshot)
-
-                    # Send image to AI
-                    response = send_image_to_api("screenshot.jpg")
-                    print("AI Response:", response)
-
-                    # Text-to-Speech
-                    text_to_speech(response)
 
         # Bind the mouse callback
         cv2.setMouseCallback("Camera Feed", mouse_click)
