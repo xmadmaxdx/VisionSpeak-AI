@@ -83,10 +83,6 @@ def preprocess_image(image):
     # Invert the grayscale image to make background black and text white
     _, binary_image = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
-    # Sharpen the image to enhance text clarity
-    kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])  # Sharpening kernel
-    sharpened_image = cv2.filter2D(binary_image, -1, kernel)
-
     return sharpened_image
 
 def main():
